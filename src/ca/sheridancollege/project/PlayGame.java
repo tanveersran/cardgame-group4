@@ -23,7 +23,7 @@ public class PlayGame {
 
     private void run() {
         // printing the welcome message
-        System.out.println(Console.printWelcome());
+        Console.printWelcome();
 
         // continue when user presses enter (empty string)
         String input = "something";
@@ -37,7 +37,7 @@ public class PlayGame {
         // printing player selection message and asking user input
         int playerCount = 0; // placeholder value
         while (playerCount < Game.minPlayerCount || playerCount > Game.maxPlayerCount) {
-            System.out.println(Console.printPlayerSelection()); // loop until value is in the criteria
+            Console.printPlayerSelection(); // loop until value is in the criteria
 
             try {
                 playerCount = scn.nextInt(); // get user input
@@ -49,6 +49,22 @@ public class PlayGame {
         }
 
         game.setPlayerCount(playerCount); // set the player count
+        Console.clear();
 
+        // get usernames of players
+        UsernameValidator valName = new UsernameValidator();
+        String playerName = "";
+        boolean nameMatchesCriteria = false;
+        
+        for (int i = 1; i <= game.getPlayerCount(); i++) {
+            while (!nameMatchesCriteria) {
+                scn = new Scanner(System.in); // flushing scanner
+                
+                Console.printPlayerName(i);                      
+                playerName = scn.nextLine();
+                nameMatchesCriteria = valName.validate(playerName);
+            }
+            nameMatchesCriteria = false; // set criteria to false again for next player
+        }
     }
 }

@@ -5,7 +5,7 @@
 package ca.sheridancollege.project;
 
 /**
- *
+ * This class can be used to print basic messages for a console game
  * @author Tanveer
  */
 public class Console {
@@ -16,14 +16,13 @@ public class Console {
      *
      * @return String containing welcome message
      */
-    public static String printWelcome() {
-        String message = "////  Welcome to Takeaway ///// \n"
+    public static void printWelcome() {
+        System.out.print("////  Welcome to Takeaway ///// \n"
                 + "//// Created by :         //// \n"
                 + "//// Tanveer Singh Sran  //// \n"
                 + "//// Rajat Rajat         //// \n"
                 + "//// Nimrat Kaur Virk    //// \n"
-                + "//// Nancy Nancy         //// \n\n";
-        return message;
+                + "//// Nancy Nancy         //// \n\n");
     }
 
     /**
@@ -31,11 +30,9 @@ public class Console {
      *
      * @return String
      */
-    public static String printPlayerSelection() {
-        String message = "Please enter players between "
-                + Game.minPlayerCount + " - " + Game.maxPlayerCount;
-
-        return message;
+    public static void printPlayerSelection() {
+        System.out.println("Please enter players between "
+                + Game.minPlayerCount + " - " + Game.maxPlayerCount);
     }
     
     /**
@@ -45,5 +42,10 @@ public class Console {
         for(int i = 0; i < 50; i++) {
             System.out.println();
         }
+    }
+    
+    public static void printPlayerName(int playerNumber) {
+        System.out.println("Player " + playerNumber + ", Please enter/choose a username "
+                + "between " + Game.minPlayerCount + " - " + Game.maxPlayerCount);
     }
 }

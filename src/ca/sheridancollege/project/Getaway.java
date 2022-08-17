@@ -17,7 +17,7 @@ public class Getaway extends Game{
     }
 
     public void setPlayerCount(int playerCount) {
-        if (playerCount > Game.minPlayerCount && playerCount < Game.maxPlayerCount)
+        if (playerCount >= Game.minPlayerCount && playerCount <= Game.maxPlayerCount)
         this.playerCount = playerCount;
         
         else
