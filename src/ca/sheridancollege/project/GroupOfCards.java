@@ -17,12 +17,15 @@ import java.util.Collections;
  */
 public class GroupOfCards {
 
-    //The group of cards, stored in an ArrayList
-    public static ArrayList<Card> cards = new ArrayList<>();
-    private int size;//the size of the grouping
+    //The group of cards, stored in an ArrayList will also be used as the discard pile.
+    public ArrayList<Card> cards = new ArrayList<>();
+    private  int size = 52;//the size of the grouping
 
+    public GroupOfCards() {
+        // empty constructor
+    }
     public GroupOfCards(int size) {
-        this.size = size;
+       this.size = size;
     }
 
     /**
@@ -34,7 +37,7 @@ public class GroupOfCards {
         return cards;
     }
 
-    public static void shuffle() {
+    public void shuffle() {
         Collections.shuffle(cards);
     }
 
@@ -52,8 +55,20 @@ public class GroupOfCards {
         this.size = size;
     }
     
-   public static void addCard(Card cardName) {
+   public void addCard(Card cardName) {
        cards.add(cardName);
    }
+   
+    public void initialize(){
+        for (String suitName : Card.suitName) {
+            for (String[] cardDetail : Card.cardDetails) {
+                Card cardObject = new Card();
+                cardObject.setSuit(suitName);
+                cardObject.setCardName(cardDetail[0]);
+                cardObject.setCardRank(Integer.parseInt(cardDetail[1]));
+                addCard(cardObject);
+            }
+        }
+    }
 
 }

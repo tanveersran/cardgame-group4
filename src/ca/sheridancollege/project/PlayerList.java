@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class PlayerList {
     private static ArrayList<Player> players = new ArrayList<>(); // keep track of players playing
-    
+
     
     /**
      * This method adds
@@ -25,6 +25,12 @@ public class PlayerList {
     public static ArrayList<Player> getPlayers() {
         return players;
     }
+
+    public static int getPlayerCount() {
+        return players.size();
+    }
+    
+    
     
     
     

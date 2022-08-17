@@ -33,8 +33,6 @@ public class Getaway extends Game{
     
     @Override
     public void play() {
-       
-       
   
         
     }
@@ -42,16 +40,5 @@ public class Getaway extends Game{
     @Override
     public void declareWinner() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    public void initialize(){
-        for (String suitName : Card.suitName) {
-            for (String[] cardDetail : Card.cardDetails) {
-                Card cardObject = new Card();
-                cardObject.setSuit(suitName);
-                cardObject.setCardName(cardDetail[0]);
-                cardObject.setCardRank(Integer.parseInt(cardDetail[1]));
-                GroupOfCards.addCard(cardObject);
-            }
-        }
     }
 }
