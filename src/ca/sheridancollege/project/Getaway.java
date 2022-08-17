@@ -11,7 +11,7 @@ package ca.sheridancollege.project;
 public class Getaway extends Game{
     
     private int playerCount;
-    
+    private int roundNo;
 
     public int getPlayerCount() {
         return playerCount;

@@ -61,4 +61,42 @@ public class Console {
                 + UsernameValidator.maxUsernameLength + " characters");
         return message;
     }
+    
+    /**
+     * This method prints the game beggining message and prompts user to either
+     * type rules or press enter to continue
+     * @return 
+     */
+    
+    public static String printGameBegin() {
+        String message = "---------------------------------------------------"
+                + "/                                                 / \n"
+                + "/               GAME IS STARTING                  / \n"
+                + "/                                                 / \n"
+                + "/  PRESS ENTER TO BEGIN OR TYPE 'rules' FOR RULES / \n"
+                + "/                                                 / \n"
+                + "                                                  / \n"
+                + "------------------------------------------------------";
+        
+        return message;
+    } 
+    
+    public static String printRules() {
+        String message = "Game Rules: \n"
+                + "1. Player having the ACE of SPADES begins the game \n"
+                + "2. This game is to be played between " + Game.minPlayerCount
+                + " - " + Game.maxPlayerCount + " players. \n"
+                + "3. The consecutive rounds begin with the player who played "
+                + "the highest ranked card in previous round. \n"
+                + "4. The cards that have been played in the rounds will be kept in "
+                + "a discard pile. \n"
+                + "5. The players who successfully use all their cards are counted"
+                + " as one of the winners. \n "
+                + "6. However, if the last card the player threw was the highest ranked card of that round,\n "
+                + "the player will be given a random card from the discard pile "
+                + "and will have to stay in the game\n "
+                + "7. The player left at the end is considered the loser, \n while "
+                + "all other players get score based on the position the got out of the game at.";
+        return message;
+    }
 }

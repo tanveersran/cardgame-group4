@@ -16,7 +16,9 @@ public class PlayGame {
     String clear = Console.clear();
     String playerSelection = Console.printPlayerSelection();
     String welcomeMessage = Console.printWelcome();
-
+    String gameBeginMessage = Console.printGameBegin();
+    String gameRules = Console.printRules();
+    
     Scanner scn = new Scanner(System.in);
     Getaway game = new Getaway("Getaway");
 
@@ -96,6 +98,24 @@ public class PlayGame {
             }
 
             nameMatchesCriteria = false; // set criteria to false again for next player
+        }
+        
+        System.out.println(clear);
+        
+        // PRINT GAME BEGIN MESSAGE 
+        System.out.println(gameBeginMessage);
+        
+        String response = scn.nextLine();
+        
+        while (!(response.equals("") || response.equalsIgnoreCase("rules"))) {
+            System.out.println("Press Enter to continue, or type 'rules' to view rules.");
+            response = scn.nextLine();
+        }
+        
+        System.out.println(clear);
+        
+        if (response.equalsIgnoreCase("rules")) {
+            System.out.println(gameRules);
         }
     }
 
