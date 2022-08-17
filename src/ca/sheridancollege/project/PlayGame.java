@@ -66,7 +66,9 @@ public class PlayGame {
             while (!nameMatchesCriteria) {
                 scn = new Scanner(System.in); // flushing scanner
                 
-                Console.printPlayerName(i);                      
+                System.out.println(Console.printPlayerNumber(i)); // print 
+                
+                
                 playerName = scn.nextLine();
                 
                 nameMatchesCriteria = valName.validate(playerName);

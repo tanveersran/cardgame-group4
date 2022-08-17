@@ -32,8 +32,8 @@ public class Getaway extends Game{
     
     @Override
     public void play() {
-        Card king = new Card("King", 12);
-        GroupOfCards.addCard(king);
+       
+       
         
      
     }
