@@ -51,6 +51,7 @@ public class Console {
     
     public static void printPlayerName(int playerNumber) {
         System.out.println("Player " + playerNumber + ", Please enter/choose a username"
-                + " having 3 - 16 characters");             
+                + " having" + UsernameValidator.minUsernameLength
+                + UsernameValidator.maxUsernameLength + "characters");             
     }
 }

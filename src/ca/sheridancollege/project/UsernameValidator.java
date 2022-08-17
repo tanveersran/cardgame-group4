@@ -9,6 +9,8 @@ package ca.sheridancollege.project;
  * @author Tanveer
  */
 public class UsernameValidator {
+    public static final int minUsernameLength = 3;
+    public static final int maxUsernameLength = 16;
     
     /**
      * This method validates the username that is inputted in the parameters
@@ -17,7 +19,7 @@ public class UsernameValidator {
      */
     public boolean validate(String username) {
         boolean matchesCriteria = false;
-        if (username.length() >= 3 && username.length() <= 16) {
+        if (username.length() >= minUsernameLength && username.length() <= maxUsernameLength) {
             matchesCriteria = true;
         }
         return matchesCriteria;
