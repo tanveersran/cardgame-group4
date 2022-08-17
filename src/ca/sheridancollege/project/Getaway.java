@@ -8,6 +8,36 @@ package ca.sheridancollege.project;
  *
  * @author Tanveer
  */
-public class Getaway {
+public class Getaway extends Game{
+    
+    private int playerCount;
+
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    public void setPlayerCount(int playerCount) {
+        if (playerCount > Game.minPlayerCount && playerCount < Game.maxPlayerCount)
+        this.playerCount = playerCount;
+        
+        else
+            throw new IllegalArgumentException("Player count should be between "
+                    + Game.minPlayerCount + " - " + Game.maxPlayerCount);
+    }
+    
+    public Getaway(String name) {
+        super(name);
+    }
+
+    
+    @Override
+    public void play() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void declareWinner() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
