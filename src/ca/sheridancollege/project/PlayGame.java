@@ -11,9 +11,8 @@ import java.util.Scanner;
  *
  * @author Tanveer
  */
-
-
 public class PlayGame {
+
     String clear = Console.clear();
     String playerSelection = Console.printPlayerSelection();
     String welcomeMessage = Console.printWelcome();
@@ -36,7 +35,7 @@ public class PlayGame {
             System.out.println("Please press Enter to continue");
             input = scn.nextLine();
         }
-        
+
         System.out.println(clear);
 
         // printing player selection message and asking user input
@@ -54,25 +53,37 @@ public class PlayGame {
         }
 
         game.setPlayerCount(playerCount); // set the player count
-        
+
         System.out.println(clear);
 
         // get usernames of players
         UsernameValidator valName = new UsernameValidator();
         String playerName = "";
         boolean nameMatchesCriteria = false;
-        
+
         for (int i = 1; i <= game.getPlayerCount(); i++) {
             while (!nameMatchesCriteria) {
                 scn = new Scanner(System.in); // flushing scanner
-                
-                System.out.println(Console.printPlayerNumber(i)); // print 
-                
-                
+
+                System.out.println(Console.printPlayerNumber(i)); // print player number
+
                 playerName = scn.nextLine();
-                
-                nameMatchesCriteria = valName.validate(playerName);
+
+                if (i > 1) { // start checking if player is in playerlist from 2nd player
+                    for (Player player : PlayerList.getPlayers()) {
+                        if (player.getName().equals(playerName)) {
+                            System.out.println("Name already taken, re-enter username");
+                            playerName = scn.nextLine();
+                            break;
+                        }
+                    }
+                }
+                nameMatchesCriteria = valName.validate(playerName); // check if name matches criteria
+                              
+                Player player = new Player(playerName, i);
+                PlayerList.addPlayer(player); // create player object and add it to player list
             }
+            
             nameMatchesCriteria = false; // set criteria to false again for next player
         }
     }

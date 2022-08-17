@@ -8,6 +8,11 @@ package ca.sheridancollege.project;
  *
  * @author Tanveer
  */
-public class PlayerHand {
+public class PlayerHand extends GroupOfCards {
+    
+    public PlayerHand(int size) {
+        super(size);
+    }
+    
     
 }

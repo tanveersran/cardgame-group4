@@ -10,20 +10,25 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
+ * @modified Tanveer Singh Sran
+ * 
  */
 public class Player {
 
     private String name; // the unique name for this player
     private int playerNumber; // used to assign player turns
-    private boolean hasHighestCard; 
+    private boolean hasHighestCard; // to check if player has the highest card in round
     
+    private PlayerHand playerHand = new PlayerHand(12); // cards the player has
     /**
-     * A constructor that allows you to set the player's unique ID
+     * A constructor that allows you to set the player's name and players number
      *
      * @param name the unique ID to assign to this player.
+     * @param playerNumber the number of player to decide turn
      */
-    public Player(String name) {
+    public Player(String name, int playerNumber) {
         this.name = name;
+        this.playerNumber = playerNumber;
     }
 
     /**
