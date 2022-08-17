@@ -11,7 +11,12 @@ import java.util.Scanner;
  *
  * @author Tanveer
  */
+
+
 public class PlayGame {
+    String clear = Console.clear();
+    String playerSelection = Console.printPlayerSelection();
+    String welcomeMessage = Console.printWelcome();
 
     Scanner scn = new Scanner(System.in);
     Getaway game = new Getaway("Getaway");
@@ -23,7 +28,7 @@ public class PlayGame {
 
     private void run() {
         // printing the welcome message
-        Console.printWelcome();
+        System.out.println(welcomeMessage);
 
         // continue when user presses enter (empty string)
         String input = "something";
@@ -31,13 +36,13 @@ public class PlayGame {
             System.out.println("Please press Enter to continue");
             input = scn.nextLine();
         }
-
-        Console.clear();
+        
+        System.out.println(clear);
 
         // printing player selection message and asking user input
         int playerCount = 0; // placeholder value
         while (playerCount < Game.minPlayerCount || playerCount > Game.maxPlayerCount) {
-            Console.printPlayerSelection(); // loop until value is in the criteria
+            System.out.println(playerSelection); // loop until value is in the criteria
 
             try {
                 playerCount = scn.nextInt(); // get user input
@@ -49,7 +54,8 @@ public class PlayGame {
         }
 
         game.setPlayerCount(playerCount); // set the player count
-        Console.clear();
+        
+        System.out.println(clear);
 
         // get usernames of players
         UsernameValidator valName = new UsernameValidator();

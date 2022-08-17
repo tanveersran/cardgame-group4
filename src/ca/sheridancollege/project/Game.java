@@ -21,8 +21,6 @@ public abstract class Game {
     public static final int minPlayerCount = 3; // minimum amount of players that can play
     public static final int maxPlayerCount = 8; // maximum amount of players that can play
 
-  
-
    
     public Game(String name) {
         this.name = name;
