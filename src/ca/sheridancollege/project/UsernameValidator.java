@@ -17,7 +17,7 @@ public class UsernameValidator {
      */
     public boolean validate(String username) {
         boolean matchesCriteria = false;
-        if (username.length() >= 3) {
+        if (username.length() >= 3 && username.length() <= 16) {
             matchesCriteria = true;
         }
         return matchesCriteria;

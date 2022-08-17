@@ -50,7 +50,7 @@ public class Console {
     }
     
     public static void printPlayerName(int playerNumber) {
-        System.out.println("Player " + playerNumber + ", Please enter/choose a username "
-                + "between " + Game.minPlayerCount + " - " + Game.maxPlayerCount);
+        System.out.println("Player " + playerNumber + ", Please enter/choose a username"
+                + " having 3 - 16 characters");             
     }
 }

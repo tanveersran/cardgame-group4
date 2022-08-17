@@ -13,8 +13,10 @@ package ca.sheridancollege.project;
  */
 public class Player {
 
-    private String name; //the unique name for this player
-
+    private String name; // the unique name for this player
+    private int playerNumber; // used to assign player turns
+    private boolean hasHighestCard; 
+    
     /**
      * A constructor that allows you to set the player's unique ID
      *

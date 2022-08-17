@@ -68,6 +68,7 @@ public class PlayGame {
                 
                 Console.printPlayerName(i);                      
                 playerName = scn.nextLine();
+                
                 nameMatchesCriteria = valName.validate(playerName);
             }
             nameMatchesCriteria = false; // set criteria to false again for next player
