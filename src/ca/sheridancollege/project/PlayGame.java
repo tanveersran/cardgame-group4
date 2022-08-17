@@ -40,15 +40,14 @@ public class PlayGame {
 
         // printing player selection message and asking user input
         int playerCount = 0; // placeholder value
-        while (playerCount < Game.minPlayerCount || playerCount > Game.maxPlayerCount) {
-            System.out.println(playerSelection); // loop until value is in the criteria
 
+        while (playerCount < Game.minPlayerCount || playerCount > Game.maxPlayerCount) {
+            System.out.println(playerSelection); // loop until value is in the criteria          
             try {
                 playerCount = scn.nextInt(); // get user input
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid numerical value");
                 scn = new Scanner(System.in);
-                playerCount = scn.nextInt();
             }
         }
 
@@ -70,21 +69,34 @@ public class PlayGame {
                 playerName = scn.nextLine();
 
                 if (i > 1) { // start checking if player is in playerlist from 2nd player
-                    for (Player player : PlayerList.getPlayers()) {
-                        if (player.getName().equals(playerName)) {
-                            System.out.println("Name already taken, re-enter username");
-                            playerName = scn.nextLine();
-                            break;
+
+                    boolean playerExists = true;
+
+                    /* 
+                    CURRENT BUG IN LINE 78 - LINE 89
+                    sometimes while loop exists even when name is taken
+                    */
+                    while (playerExists) {
+                        for (Player player : PlayerList.getPlayers()) {
+                            if (player.getName().equals(playerName)) {
+                                System.out.println("Name already taken, re-enter username");
+                                playerName = scn.nextLine(); 
+
+                            } else {
+                                playerExists = false;
+                            }
                         }
                     }
                 }
+
                 nameMatchesCriteria = valName.validate(playerName); // check if name matches criteria
-                              
+
                 Player player = new Player(playerName, i);
                 PlayerList.addPlayer(player); // create player object and add it to player list
             }
-            
+
             nameMatchesCriteria = false; // set criteria to false again for next player
         }
     }
+
 }

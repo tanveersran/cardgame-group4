@@ -56,8 +56,8 @@ public class Console {
      */
     
     public static String printPlayerNumber(int playerNumber) {
-        String message = ("Player " + playerNumber + ", Please enter/choose a username"
-                + " having" + UsernameValidator.minUsernameLength + " - "
+        String message = ("Player " + playerNumber + ", Please enter/choose a username "
+                + "having " + UsernameValidator.minUsernameLength + " - "
                 + UsernameValidator.maxUsernameLength + " characters");
         return message;
     }
