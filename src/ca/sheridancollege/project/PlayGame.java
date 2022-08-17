@@ -116,7 +116,16 @@ public class PlayGame {
         
         if (response.equalsIgnoreCase("rules")) {
             System.out.println(gameRules);
+            System.out.println("Press Enter to begin game.");
         }
+        
+        response = scn.nextLine();
+        while (!response.equals(""))
+        {
+            System.out.println("Press Enter to begin game.");
+        }
+        
+        System.out.println(clear);
     }
 
 }
