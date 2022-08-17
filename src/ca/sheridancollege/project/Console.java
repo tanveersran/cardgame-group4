@@ -49,9 +49,16 @@ public class Console {
         return message;
     }
     
-    public static void printPlayerName(int playerNumber) {
-        System.out.println("Player " + playerNumber + ", Please enter/choose a username"
+    /**
+     * This method prints output to ask user to enter their name
+     * @param playerNumber 
+     * @return String 
+     */
+    
+    public static String printPlayerName(int playerNumber) {
+        String message = ("Player " + playerNumber + ", Please enter/choose a username"
                 + " having" + UsernameValidator.minUsernameLength
-                + UsernameValidator.maxUsernameLength + "characters");             
+                + UsernameValidator.maxUsernameLength + "characters");
+        return message;
     }
 }

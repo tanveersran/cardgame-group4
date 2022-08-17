@@ -32,7 +32,10 @@ public class Getaway extends Game{
     
     @Override
     public void play() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Card king = new Card("King", 12);
+        GroupOfCards.addCard(king);
+        
+     
     }
 
     @Override
