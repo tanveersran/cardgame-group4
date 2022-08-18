@@ -17,7 +17,7 @@ public class Player {
 
     private String name; // the unique name for this player
     private int playerNumber; // used to assign player turns
-    private boolean hasHighestCard; // to check if player has the highest card in round
+    private boolean currentPlayer; // to check if player has the highest card in round
     private PlayerHand playerHand = new PlayerHand(); // cards the player has
     
     public int getPlayerNumber() {
@@ -28,12 +28,12 @@ public class Player {
         this.playerNumber = playerNumber;
     }
 
-    public boolean isHasHighestCard() {
-        return hasHighestCard;
+    public boolean isCurrentPlayer() {
+        return currentPlayer;
     }
 
-    public void setHasHighestCard(boolean hasHighestCard) {
-        this.hasHighestCard = hasHighestCard;
+    public void setCurrentPlayer(boolean hasHighestCard) {
+        this.currentPlayer = hasHighestCard;
     }
     
     

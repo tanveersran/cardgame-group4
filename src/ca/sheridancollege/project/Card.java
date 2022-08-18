@@ -14,13 +14,10 @@ package ca.sheridancollege.project;
 public class Card {
     //default modifier for child classes
     private String cardName;
+    private int cardNumber; // unique number used to help in card selectiom   
     private int cardRank; // rank value of card
     private String suit;
     
-    final static String[][] cardDetails = {{"KING","13"},{"QUEEN","12"},{"JACK","11"},{"TEN","10"},{"NINE","9"},
-                       {"EIGHT","8"},{"SEVEN","7"},{"SIX","6"},{"FIVE","5"},{"FOUR","4"},
-                       {"THREE","3"},{"TWO","2"},{"ACE","14"}};
-    final static String[] suitName = {"DIAMONDS","SPADE", "HEARTS","CLUBS"};
     /**
      * no-args Constructor
      */
@@ -79,6 +76,13 @@ public class Card {
         this.suit = suit;
     }
 
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
     
     /**
      * Students should implement this method for their specific children classes
@@ -87,7 +91,7 @@ public class Card {
      */
     
     public String toString(){
-        String printCard = "[SUIT] "+suit+" [CARD NAME] "+cardName + " [CARD RANK] "+ cardRank;
+        String printCard = cardName + " of " + suit + "(ID: " + cardNumber + ")";
         return printCard;
     }
 

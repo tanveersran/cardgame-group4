@@ -173,18 +173,19 @@ public class PlayGame {
         
         System.out.println("Cards distributed....");
         
+        // STARTING THE GAME
+        
+        game.play();
+        
     }
 
     private void setPlayerMaxCards(int[] maxCardValues) {
         for (int i = 0; i < PlayerList.getPlayerCount(); i++) {
             Player player = PlayerList.getPlayers().get(i); // get player object
             player.getPlayerHand().setSize(maxCardValues[i]); // set card size
-        }
-        for (Player player: PlayerList.getPlayers()) {
-            System.out.println(player.getPlayerHand().getSize());
-        }
-        
+        }       
     }
+    
     
    
 

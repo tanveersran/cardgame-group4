@@ -9,23 +9,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
- * once. The group of cards has a maximum size attribute which is flexible for reuse.
+ * A concrete class that represents any grouping of cards for a Game. HINT, you
+ * might want to subclass this more than once. The group of cards has a maximum
+ * size attribute which is flexible for reuse.
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  */
 public class GroupOfCards {
 
+    private final String[][] cardDetails = {{"ACE", "14"} , {"KING", "13"}, {"QUEEN", "12"}, {"JACK", "11"}, {"TEN", "10"}, {"NINE", "9"},
+    {"EIGHT", "8"}, {"SEVEN", "7"}, {"SIX", "6"}, {"FIVE", "5"}, {"FOUR", "4"},
+    {"THREE", "3"}, {"TWO", "2"}, };
+    private final String[] suitName = {"DIAMONDS", "SPADE", "HEARTS", "CLUBS"};
+
     //The group of cards, stored in an ArrayList will also be used as the discard pile.
     public ArrayList<Card> cards = new ArrayList<>();
-    private  int size = 52;//the size of the grouping
+    private int size = 52;//the size of the grouping
 
     public GroupOfCards() {
         // empty constructor
     }
+
     public GroupOfCards(int size) {
-       this.size = size;
+        this.size = size;
     }
 
     /**
@@ -54,19 +61,23 @@ public class GroupOfCards {
     public void setSize(int size) {
         this.size = size;
     }
-    
-   public void addCard(Card cardName) {
-       cards.add(cardName);
-   }
-   
-    public void initialize(){
-        for (String suitName : Card.suitName) {
-            for (String[] cardDetail : Card.cardDetails) {
+
+    public void addCard(Card cardName) {
+        cards.add(cardName);
+    }
+
+    public void initialize() {
+        int cardNumber = 1;
+        for (String suit : suitName) {
+            for (String[] card : cardDetails) {
                 Card cardObject = new Card();
-                cardObject.setSuit(suitName);
-                cardObject.setCardName(cardDetail[0]);
-                cardObject.setCardRank(Integer.parseInt(cardDetail[1]));
+                cardObject.setSuit(suit);
+                cardObject.setCardName(card[0]);
+                cardObject.setCardRank(Integer.parseInt(card[1]));
+                cardObject.setCardNumber(cardNumber);
                 addCard(cardObject);
+
+                cardNumber++;
             }
         }
     }
