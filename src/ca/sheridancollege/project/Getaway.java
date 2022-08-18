@@ -9,15 +9,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * This class contains the logic of the Getaway games. It controls the rounds being
- * played in the game and announces the winners.
- * 
+ * This class contains the logic of the Getaway games. It controls the rounds
+ * being played in the game and announces the winners.
+ *
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat
  * @author Nancy Nancy
  */
-
 public class Getaway extends Game {
 
     Scanner scn = new Scanner(System.in);
@@ -146,7 +145,7 @@ public class Getaway extends Game {
                         System.out.println(currentPlayer.getName() + " has Ace of Spades , Its your turn!");
 
                         // ask user to press enter to continue so they have time to look away from screen
-                        enterToContinue("Press enter when you're ready");
+                        Console.enterToContinue("Press enter when you're ready");
 
                         System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
                         currentSuit = card.getSuit(); // update current suit to match card suit
@@ -163,6 +162,7 @@ public class Getaway extends Game {
             }
         } else {
             currentPlayer = highestCardPlayer; // set current player to player who had highest card in last round.
+            currentPlayer.setHasPlayed(true);
             throwCard(); // throw cards.
         }
     }
@@ -175,6 +175,7 @@ public class Getaway extends Game {
         scn = new Scanner(System.in); // flushing the scanner
 
         for (Player player : PlayerList.getPlayers()) {
+            System.out.println(player.getName() + "has " + player.hasPlayed());
             if (!player.hasPlayed()) {
                 player.setCurrentPlayer(true);
                 player.setHasPlayed(true);
@@ -219,7 +220,7 @@ public class Getaway extends Game {
             }
 
             for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
-               
+
                 try {
                     Card card = currentPlayer.getPlayerCard().get(i);
                     if (card.getCardNumber() == cardNo) {
@@ -240,14 +241,23 @@ public class Getaway extends Game {
                             highestCard = card; // if played card has higher rank, it will be set as highest card.
                             highestCardPlayer = currentPlayer;
                         }
-
-                        currentSuit = card.getSuit(); // update current suit to match card suit
-                        discardPile.add(card); // add card to played card array    
-                        currentPlayer.getPlayerCard().remove(i); // remove card from players cards
                         
-                        cardFound = true;
-                        currentPlayer.setCurrentPlayer(false);
-                        break;
+                        discardPile.add(card); // add card to discard pile
+                        currentPlayer.getPlayerCard().remove(i); // remove card from players suit
+
+                        if (cardOfSuitExists == false) { // this runs when player has to take all cards from discard pile
+                            giveDiscardPile(); // give discard pile to the player with the highest rank card.
+                            endRound(); // round will end
+                            nextRound();
+                            cardFound = true;
+
+                            break;
+                        } else { // this runs when suit exists
+                            currentSuit = card.getSuit(); // update current suit to match card suit
+                            cardFound = true;
+                            currentPlayer.setCurrentPlayer(false);
+                            break;
+                        }
                     }
                 } catch (IndexOutOfBoundsException e) {
                 }
@@ -308,7 +318,6 @@ public class Getaway extends Game {
                     // 
                 }
             }
-
         }
 
         if (cardOfSuitExists == false) { // run this if no condition above is met
@@ -320,7 +329,6 @@ public class Getaway extends Game {
                 }
             }
         }
-
     }
 
     /**
@@ -342,14 +350,4 @@ public class Getaway extends Game {
      *
      * @param message the prompt message
      */
-    private void enterToContinue(String message) {
-        scn = new Scanner(System.in);
-
-        System.out.println(message);
-        String input = scn.nextLine();
-        while (!input.equals("")) {
-            System.out.println(message);
-            input = scn.nextLine();
-        }
-    }
 }
