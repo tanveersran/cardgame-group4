@@ -216,10 +216,9 @@ public class Getaway extends Game {
             }
 
             for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
-                ArrayList<Card> cardList = currentPlayer.getPlayerHand().getCards();
+               
                 try {
-                    Card card = cardList.get(i);
-
+                    Card card = currentPlayer.getPlayerCard().get(i);
                     if (card.getCardNumber() == cardNo) {
                         System.out.println(Console.clear());
                         System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
@@ -240,11 +239,9 @@ public class Getaway extends Game {
                         }
 
                         currentSuit = card.getSuit(); // update current suit to match card suit
-
                         discardPile.add(card); // add card to played card array    
-
-                        cardList.remove(i); // remove card from players cards
-
+                        currentPlayer.getPlayerCard().remove(i); // remove card from players cards
+                        
                         cardFound = true;
                         currentPlayer.setCurrentPlayer(false);
                         break;
@@ -292,7 +289,7 @@ public class Getaway extends Game {
         for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
             if (!firstTurnPlayed) {
                 try {
-                    System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                    System.out.println(currentPlayer.getPlayerCard().get(i));
                     cardOfSuitExists = true; // set to true if this condition is met
                 } catch (IndexOutOfBoundsException e) {
                     //
@@ -301,7 +298,7 @@ public class Getaway extends Game {
                 try {
                     if (currentPlayer.getPlayerHand().getCards().get(i).getSuit().equals(currentSuit)) {
                         cardOfSuitExists = true;
-                        System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                        System.out.println(currentPlayer.getPlayerCard().get(i));
                     }
                 } catch (IndexOutOfBoundsException e) {
                     // 
@@ -314,7 +311,7 @@ public class Getaway extends Game {
             System.out.println("You do not have a card of that suit, Choose any card.");
             for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
                 try {
-                    System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                    System.out.println(currentPlayer.getPlayerCard().get(i));
                 } catch (IndexOutOfBoundsException e) {
                 }
             }
@@ -330,7 +327,7 @@ public class Getaway extends Game {
         System.out.println(highestCardPlayer.getName() + " has taken all the cards from discard pile!\n");
 
         for (Card cards : discardPile) {
-            highestCardPlayer.getPlayerHand().getCards().add(cards);
+            highestCardPlayer.getPlayerCard().add(cards);
         }
         discardPile.clear();
     }

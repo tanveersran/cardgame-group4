@@ -5,6 +5,8 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.ArrayList;
+
 /**
  * A class that models each Player in the game. Players have an identifier,
  * which should be unique.
@@ -89,6 +91,26 @@ public class Player {
 
     public void setHasPlayed(boolean hasPlayed) {
         this.hasPlayed = hasPlayed;
+    }
+    
+    public void addPlayerCard(Card card) {
+        playerHand.cards.add(card);
+    }
+    
+    /**
+     *
+     * @param card card that is to be removed
+     */
+    public void removePlayerCard(Card card) {
+        for (Card playerCard: playerHand.getCards()) {
+            if (playerCard.equals(card)) {
+                playerHand.getCards().remove(playerCard);
+            }
+        }
+    }
+    
+    public ArrayList<Card> getPlayerCard() {
+        return playerHand.getCards();
     }
 
 }
