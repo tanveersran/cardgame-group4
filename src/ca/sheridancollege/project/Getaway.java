@@ -17,6 +17,7 @@ import java.util.Scanner;
  * @author Rajat Rajat
  * @author Nancy Nancy
  */
+
 public class Getaway extends Game {
 
     Scanner scn = new Scanner(System.in);
@@ -266,6 +267,7 @@ public class Getaway extends Game {
         discardPile.clear(); // reset played card arraylist
         roundNo++;
         firstTurnPlayed = false; // reset first turned played value
+        highestCard.setCardRank(0);// set rank to lowest rank possible
     }
 
     /**

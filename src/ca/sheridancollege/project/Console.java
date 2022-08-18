@@ -75,14 +75,14 @@ public class Console {
      */
     
     public static final String printGameBegin() {
-        String message = "---------------------------------------------"
-                + "/                                                 /\n"
-                + "/               GAME IS STARTING                  /\n"
-                + "/                                                 /\n"
-                + "/  PRESS ENTER TO BEGIN OR TYPE 'rules' FOR RULES /\n"
-                + "/                                                 /\n"
-                + "/                                                  /\n"
-                + "----------------------------------------------------";
+        String message = "-----------------------------------------------/\n"
+                + "/                                                /\n"
+                + "/               GAME IS STARTING                 /\n"
+                + "/                                                /\n"
+                + "/ PRESS ENTER TO BEGIN OR TYPE 'rules' FOR RULES /\n"
+                + "/                                                /\n"
+                + "/                                                /\n"
+                + "---------------------------------------------------";
         
         return message;
     } 
