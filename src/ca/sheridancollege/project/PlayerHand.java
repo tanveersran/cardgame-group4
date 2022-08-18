@@ -5,7 +5,9 @@
 package ca.sheridancollege.project;
 
 /**
- *
+ * This is an extension of the GroupOfCards class. It contains the personal cards
+ * of a player.
+ * 
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat

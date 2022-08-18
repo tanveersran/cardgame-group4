@@ -8,7 +8,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
+ * This class controls the starting of the game, it asks users for their usernames,
+ * prompts to view rules and begins the game.
+ * 
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat
@@ -39,11 +41,7 @@ public class PlayGame {
         System.out.println(welcomeMessage);
 
         // continue when user presses enter (empty string)
-        String input = "something";
-        while (!input.equals("")) {
-            System.out.println("Please press Enter to continue");
-            input = scn.nextLine();
-        }
+        Console.enterToContinue("Press enter to continue.");
 
         System.out.println(clear);
 
@@ -124,12 +122,7 @@ public class PlayGame {
 
         if (response.equalsIgnoreCase("rules")) {
             System.out.println(gameRules);
-            System.out.println("Press Enter to begin game.");
-            response = scn.nextLine();
-
-            while (!response.equals("")) {
-                System.out.println("Press Enter to begin game.");
-            }
+            Console.enterToContinue("Press Enter to begin game.");
         }
 
         System.out.println(clear);

@@ -9,7 +9,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
+ * This class contains the logic of the Getaway games. It controls the rounds being
+ * played in the game and announces the winners.
+ * 
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat
@@ -197,7 +199,7 @@ public class Getaway extends Game {
         System.out.println(currentPlayer.getName() + " , Its your turn!");
 
         // ask user to press enter to continue so they have time to look away from screen
-        enterToContinue("Press enter when you're ready");
+        Console.enterToContinue("Press enter when you're ready");
 
         System.out.println(Console.clear());
 
@@ -271,7 +273,7 @@ public class Getaway extends Game {
      * number and clears the console to prepare for the next round.
      */
     private void nextRound() {
-        enterToContinue("\n\nPress Enter to begin next Round");
+        Console.enterToContinue("\n\nPress Enter to begin next Round");
         System.out.println(Console.clear());
 
         System.out.println("Round " + roundNo);

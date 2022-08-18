@@ -4,8 +4,11 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.Scanner;
+
 /**
  * This class can be used to print basic messages for a console game
+ * 
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat
@@ -72,14 +75,14 @@ public class Console {
      */
     
     public static final String printGameBegin() {
-        String message = "-----------------------------------------------"
-                + "/                                                 / \n"
-                + "/               GAME IS STARTING                  / \n"
-                + "/                                                 / \n"
-                + "/  PRESS ENTER TO BEGIN OR TYPE 'rules' FOR RULES / \n"
-                + "/                                                 / \n"
-                + "/                                                  / \n"
-                + "-----------------------------------------------------";
+        String message = "---------------------------------------------"
+                + "/                                                 /\n"
+                + "/               GAME IS STARTING                  /\n"
+                + "/                                                 /\n"
+                + "/  PRESS ENTER TO BEGIN OR TYPE 'rules' FOR RULES /\n"
+                + "/                                                 /\n"
+                + "/                                                  /\n"
+                + "----------------------------------------------------";
         
         return message;
     } 
@@ -123,5 +126,16 @@ public class Console {
                 + "-----------------------------------------------------";
         
         return message;
+    }
+    
+    public static final void enterToContinue(String message) {
+        Scanner scn = new Scanner(System.in);
+
+        System.out.println(message);
+        String input = scn.nextLine();
+        while (!input.equals("")) {
+            System.out.println(message);
+            input = scn.nextLine();
+        }
     }
 }
