@@ -80,10 +80,18 @@ public class Card {
         this.suit = suit;
     }
 
+    /**
+     * 
+     * @return card number 
+     */
     public int getCardNumber() {
         return cardNumber;
     }
 
+    /**
+     * 
+     * @param cardNumber  set card number
+     */
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
     }
@@ -94,6 +102,10 @@ public class Card {
      * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
      */
     
+    /**
+     * This method nicely returns a string value with card name, its suit and its number
+     * @return String containing card details
+     */
     public String toString(){
         String printCard = cardName + " of " + suit + "(ID: " + cardNumber + ")";
         return printCard;
