@@ -19,7 +19,7 @@ public class Getaway extends Game {
 
     Scanner scn = new Scanner(System.in);
     Player currentPlayer; // keep track of current player.
-    
+
     ArrayList<Card> discardPile = new ArrayList<>(); // arraylist containing the current cards
 
     private int playerCount;
@@ -67,12 +67,40 @@ public class Getaway extends Game {
                 System.out.println("Round has ended.");
                 nextRound();
             }
+            if (PlayerList.getPlayers().isEmpty()) {
+                gameFinished = true; // finish game when all players are out of the game
+            }
         }
+        
+        System.out.println(Console.clear());
+        
+       
     }
 
+    /**
+     * This method is run after every round to verify if any player has used up
+     * all their cards. That player is declared the winner and is out of the
+     * game!
+     */
     @Override
     public void declareWinner() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (Player player : PlayerList.getPlayers()) {
+            if (player.getPlayerHand().getCards().isEmpty()) {
+                if (!player.equals(highestCardPlayer)) {
+                    System.out.println("Player " + player.getName() + " has managed to get away! Congratulations.");
+                    PlayerList.getPlayers().remove(player); // remove the player from playerlist
+                    player.setPlayerScores(5); // winners get 5 scores.
+                    ScoreBoard.addWinners(player);
+                } else {
+                    System.out.println("Player " + player.getName() + " tried to get away but had the highest card! \n");
+                    System.out.println("Giving them a card from discard pile..");
+                    player.getPlayerHand().addCard(discardPile.get(0));
+                    endRound();
+                    nextRound();
+                }
+
+            }
+        }
     }
 
     /**
@@ -93,13 +121,8 @@ public class Getaway extends Game {
                         System.out.println(currentPlayer.getName() + " has Ace of Spades , Its your turn!");
 
                         // ask user to press enter to continue so they have time to look away from screen
-                        System.out.println("Press enter when you're ready");
-                        String input = scn.nextLine();
-                        while (!input.equals("")) {
-                            System.out.println("Press enter when you're ready");
-                            input = scn.nextLine();
-                        }
-
+                        enterToContinue("Press enter when you're ready");
+                                                
                         System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
                         currentSuit = card.getSuit(); // update current suit to match card suit
                         discardPile.add(card); // add card to played card array
@@ -140,20 +163,19 @@ public class Getaway extends Game {
                 currentPlayer = player;
             }
         }
-        throwCard(); // throw cards
+        throwCard();// throw cards
+        declareWinner(); // check if anyone has managed to get away
 
     }
 
+    /**
+     * This method contains logic of throwing cards when player has their turn.
+     */
     private void throwCard() {
         System.out.println(currentPlayer.getName() + " , Its your turn!");
 
         // ask user to press enter to continue so they have time to look away from screen
-        System.out.println("Press enter when you're ready");
-        String input = scn.nextLine();
-        while (!input.equals("")) {
-            System.out.println("Press enter when you're ready");
-            input = scn.nextLine();
-        }
+        enterToContinue("Press enter when you're ready");
 
         System.out.println(Console.clear());
 
@@ -179,11 +201,15 @@ public class Getaway extends Game {
                     if (card.getCardNumber() == cardNo) {
                         System.out.println(Console.clear());
                         System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
-                        
-                        if(cardOfSuitExists == false) { // this runs when player has to take all cards from discard pile
-                            giveDiscardPile();
+
+                        if (cardOfSuitExists == false) { // this runs when player has to take all cards from discard pile
+                            discardPile.add(card);
+
+                            giveDiscardPile(); // give discard pile to the player with the highest rank card.
                             endRound(); // round will end
-                            nextRound();                        
+                            nextRound();
+                            cardFound = true;
+
                             break;
                         }
                         if (card.getCardRank() > highestCard.getCardRank()) {
@@ -199,7 +225,6 @@ public class Getaway extends Game {
 
                         cardFound = true;
                         currentPlayer.setCurrentPlayer(false);
-                        System.out.println(firstTurnPlayed);
                         break;
                     }
                 } catch (IndexOutOfBoundsException e) {
@@ -227,12 +252,16 @@ public class Getaway extends Game {
      * number and clears the console to prepare for the next round.
      */
     private void nextRound() {
-        System.out.println("\n\nPress Enter to begin next Round");
+        enterToContinue("\n\nPress Enter to begin next Round");
         System.out.println(Console.clear());
 
         System.out.println("Round " + roundNo);
     }
 
+    /**
+     * This method displays cards of the current player along with the card IDs.
+     *
+     */
     private void showCards() {
         System.out.println("Your Cards: "); // printing player cards
 
@@ -263,22 +292,40 @@ public class Getaway extends Game {
             System.out.println("You do not have a card of that suit, Choose any card.");
             for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
                 try {
-                System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
-                } catch (IndexOutOfBoundsException e) {}
-            }        
+                    System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                } catch (IndexOutOfBoundsException e) {
+                }
+            }
         }
 
     }
 
-    /** This method will give all the cards that are in the discard pile back to the player 
-     * having the highest card.
+    /**
+     * This method will give all the cards that are in the discard pile back to
+     * the player having the highest card.
      */
     private void giveDiscardPile() {
         System.out.println(highestCardPlayer.getName() + " has taken all the cards from discard pile!\n");
-        
-        for (Card cards: discardPile) {
-            highestCardPlayer.getPlayerHand().getCards().add(cards);        
+
+        for (Card cards : discardPile) {
+            highestCardPlayer.getPlayerHand().getCards().add(cards);
         }
         discardPile.clear();
+    }
+
+    /**
+     * This will ask user to press enter to continue and will display a message
+     * as per the requirements.
+     * @param message the prompt message
+     */
+    private void enterToContinue(String message) {
+        scn = new Scanner(System.in);
+        
+        System.out.println(message);
+        String input = scn.nextLine();
+        while (!input.equals("")) {
+            System.out.println(message);
+            input = scn.nextLine();
+        }
     }
 }

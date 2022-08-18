@@ -16,7 +16,7 @@ public class Console {
      *
      * @return String containing welcome message
      */
-    public static String printWelcome() {
+    public static final String printWelcome() {
         String message = ("////  Welcome to Getaway ///// \n"
                 + "//// Created by :         //// \n"
                 + "//// Tanveer Singh Sran  //// \n"
@@ -31,7 +31,7 @@ public class Console {
      *
      * @return String
      */
-    public static String printPlayerSelection() {
+    public static final String printPlayerSelection() {
         String message = ("Please enter players between "
                 + Game.minPlayerCount + " - " + Game.maxPlayerCount);
         return message;
@@ -41,7 +41,7 @@ public class Console {
      * This method clears the screen by using system.out.println
      * @return String with 50 spaces
      */
-    public static String clear() {
+    public static final String clear() {
         String message = "";
         for(int i = 0; i < 50; i++) {
             message += "\n";
@@ -55,7 +55,7 @@ public class Console {
      * @return String 
      */
     
-    public static String printPlayerNumber(int playerNumber) {
+    public static final String printPlayerNumber(int playerNumber) {
         String message = ("Player " + playerNumber + ", Please enter/choose a username "
                 + "having " + UsernameValidator.minUsernameLength + " - "
                 + UsernameValidator.maxUsernameLength + " characters");
@@ -68,7 +68,7 @@ public class Console {
      * @return 
      */
     
-    public static String printGameBegin() {
+    public static final String printGameBegin() {
         String message = "-----------------------------------------------"
                 + "/                                                 / \n"
                 + "/               GAME IS STARTING                  / \n"
@@ -81,7 +81,7 @@ public class Console {
         return message;
     } 
     
-    public static String printRules() {
+    public static final String printRules() {
         String message = "Game Rules: \n"
                 + "1. Player having the ACE of SPADES begins the game \n"
                 + "2. This game is to be played between " + Game.minPlayerCount
@@ -98,5 +98,9 @@ public class Console {
                 + "7. The player left at the end is considered the loser, \n while "
                 + "all other players get score based on the position the got out of the game at.";
         return message;
+    }
+    
+    public static final String gameEnds() {
+        
     }
 }

@@ -22,8 +22,12 @@ public class Player {
     private String name; // the unique name for this player
     private int playerNumber; // used to assign player turns
     private PlayerHand playerHand = new PlayerHand(); // cards of the player
+    private int playerScores; // contains scores of the player.
+
+    
     private boolean currentPlayer; // to check if player has the highest card in round
     private boolean hasPlayed; // check if player has played their turn in the round
+    
 
     public int getPlayerNumber() {
         return playerNumber;
@@ -44,14 +48,17 @@ public class Player {
     public PlayerHand getPlayerHand() {
         return playerHand;
     }
+    
+    public int getPlayerScores() {
+        return playerScores;
+    }
+
+    public void setPlayerScores(int playerScores) {
+        this.playerScores = playerScores;
+    }
 
     /**
      * A constructor that allows you to set the player's name and players number
-     *
-     * Object getPlayerHand() { throw new UnsupportedOperationException("Not
-     * supported yet."); // Generated from
-     * nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-     * }
      *
      * @param name the unique ID to assign to this player.
      * @param playerNumber the number of player to decide turn

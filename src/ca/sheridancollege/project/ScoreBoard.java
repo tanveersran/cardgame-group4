@@ -4,6 +4,8 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Tanveer Singh Sran
@@ -12,5 +14,16 @@ package ca.sheridancollege.project;
  * @author Nancy Nancy
  */
 public class ScoreBoard {
+
+   
+    // stores the winners of rounds along with their scores
+    private static ArrayList<Player> winners = new ArrayList<>();
     
+     public static ArrayList<Player> getWinners() {
+        return winners;
+    }
+
+    public static void addWinners(Player winners) {
+        ScoreBoard.winners.add(winners);
+    }
 }
