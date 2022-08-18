@@ -73,7 +73,12 @@ public class Getaway extends Game {
         }
         
         System.out.println(Console.clear());
+        System.out.println(Console.gameEnds()); // print game ending message
         
+        // print winners and their scores.
+        for(Player winner: ScoreBoard.getWinners()) {
+            System.out.println(winner.getName() + " (Score: " + winner.getPlayerScores() + ")");
+        }
        
     }
 
@@ -98,7 +103,6 @@ public class Getaway extends Game {
                     endRound();
                     nextRound();
                 }
-
             }
         }
     }

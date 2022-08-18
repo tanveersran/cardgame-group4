@@ -81,6 +81,11 @@ public class Console {
         return message;
     } 
     
+    /**
+     * This method prints the game rules
+     * @return String value containg the game rules
+     */
+    
     public static final String printRules() {
         String message = "Game Rules: \n"
                 + "1. Player having the ACE of SPADES begins the game \n"
@@ -100,7 +105,20 @@ public class Console {
         return message;
     }
     
+    /** 
+     * This method shows a message stating that the game has ended.
+     * @return String
+     */
     public static final String gameEnds() {
+       String message = "-----------------------------------------------"
+                + "/                                                 / \n"
+                + "/               GAME HAS ENDED                    / \n"
+                + "/                                                 / \n"
+                + "/  PRESS ENTER TO VIEW THE WINNERS AND SCORES     / \n"
+                + "/                                                 / \n"
+                + "/                                                  / \n"
+                + "-----------------------------------------------------";
         
+        return message;
     }
 }
