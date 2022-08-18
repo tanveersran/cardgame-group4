@@ -22,19 +22,37 @@ public class Getaway extends Game {
 
     ArrayList<Card> discardPile = new ArrayList<>(); // arraylist containing the current cards
 
-    private int playerCount;
-    private int roundNo = 1;
+    private int playerCount; // number of players in the game.
+    private int roundNo = 1; // contains the round number
     boolean cardOfSuitExists; // keep track if players have cards of current suit being played
-    boolean firstTurnPlayed = false;
-    private String currentSuit;
+    boolean firstTurnPlayed = false; // tracks whether first turn has been played or not.
+    private String currentSuit; // stores the current suit of the game.
 
     Card highestCard = new Card(); // this will keep track of highest card of the round.
     Player highestCardPlayer; // this will keep track of player having highest card.
 
+    /**
+     * One arg constructor to set the name of the game.
+     *
+     * @param name
+     */
+    public Getaway(String name) {
+        super(name);
+    }
+
+    /**
+     *
+     * @return the player count of the game
+     */
     public int getPlayerCount() {
         return playerCount;
     }
 
+    /**
+     * Sets the player count of the game
+     *
+     * @param playerCount player count to be set
+     */
     public void setPlayerCount(int playerCount) {
         if (playerCount >= Game.minPlayerCount && playerCount <= Game.maxPlayerCount) {
             this.playerCount = playerCount;
@@ -44,10 +62,10 @@ public class Getaway extends Game {
         }
     }
 
-    public Getaway(String name) {
-        super(name);
-    }
-
+    /**
+     * This method contains logic to begin the game. It will call player turn
+     * methods and end the game as players run out of cards.
+     */
     @Override
     public void play() {
         highestCard.setCardRank(0);
@@ -71,15 +89,15 @@ public class Getaway extends Game {
                 gameFinished = true; // finish game when all players are out of the game
             }
         }
-        
+
         System.out.println(Console.clear());
         System.out.println(Console.gameEnds()); // print game ending message
-        
+
         // print winners and their scores.
-        for(Player winner: ScoreBoard.getWinners()) {
+        for (Player winner : ScoreBoard.getWinners()) {
             System.out.println(winner.getName() + " (Score: " + winner.getPlayerScores() + ")");
         }
-       
+
     }
 
     /**
@@ -126,7 +144,7 @@ public class Getaway extends Game {
 
                         // ask user to press enter to continue so they have time to look away from screen
                         enterToContinue("Press enter when you're ready");
-                                                
+
                         System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
                         currentSuit = card.getSuit(); // update current suit to match card suit
                         discardPile.add(card); // add card to played card array
@@ -320,11 +338,12 @@ public class Getaway extends Game {
     /**
      * This will ask user to press enter to continue and will display a message
      * as per the requirements.
+     *
      * @param message the prompt message
      */
     private void enterToContinue(String message) {
         scn = new Scanner(System.in);
-        
+
         System.out.println(message);
         String input = scn.nextLine();
         while (!input.equals("")) {

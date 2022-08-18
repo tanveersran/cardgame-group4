@@ -71,6 +71,9 @@ public class GroupOfCards {
         cards.add(cardName);
     }
 
+    /**
+     * Create and store cards into the array.
+     */
     public void initialize() {
         int cardNumber = 1;
         for (String suit : suitName) {

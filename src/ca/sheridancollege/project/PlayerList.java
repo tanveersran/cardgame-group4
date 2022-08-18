@@ -7,7 +7,8 @@ package ca.sheridancollege.project;
 import java.util.ArrayList;
 
 /**
- *
+ * This class stores an ArrayList of player objects of Player class.
+ * 
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat

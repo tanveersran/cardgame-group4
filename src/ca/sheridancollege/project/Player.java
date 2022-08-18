@@ -28,6 +28,16 @@ public class Player {
     private boolean currentPlayer; // to check if player has the highest card in round
     private boolean hasPlayed; // check if player has played their turn in the round
     
+     /**
+     * A constructor that allows you to set the player's name and players number
+     *
+     * @param name the unique ID to assign to this player.
+     * @param playerNumber the number of player to decide turn
+     */
+    public Player(String name, int playerNumber) {
+        this.name = name;
+        this.playerNumber = playerNumber;
+    }
 
     public int getPlayerNumber() {
         return playerNumber;
@@ -55,17 +65,6 @@ public class Player {
 
     public void setPlayerScores(int playerScores) {
         this.playerScores = playerScores;
-    }
-
-    /**
-     * A constructor that allows you to set the player's name and players number
-     *
-     * @param name the unique ID to assign to this player.
-     * @param playerNumber the number of player to decide turn
-     */
-    public Player(String name, int playerNumber) {
-        this.name = name;
-        this.playerNumber = playerNumber;
     }
 
     /**

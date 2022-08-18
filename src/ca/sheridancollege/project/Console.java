@@ -6,7 +6,10 @@ package ca.sheridancollege.project;
 
 /**
  * This class can be used to print basic messages for a console game
- * @author Tanveer
+ * @author Tanveer Singh Sran
+ * @author Nimrat Kaur Virk
+ * @author Rajat Rajat
+ * @author Nancy Nancy
  */
 public class Console {
 

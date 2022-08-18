@@ -13,12 +13,18 @@ package ca.sheridancollege.project;
  */
 public class PlayerHand extends GroupOfCards {
     
-    private int size;
+    private int size; // stores the size of the player hand.
 
+    /**
+     * @return size of player hand 
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * @param size set size of the playerHand 
+     */
     public void setSize(int size) {
         this.size = size;
     }

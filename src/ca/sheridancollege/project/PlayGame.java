@@ -31,6 +31,9 @@ public class PlayGame {
         game.run();
     }
 
+    /** This method asks users for their names and begins the game by calling the 
+     * player method from Getaway at the end.
+     */
     private void run() {
         // printing the welcome message
         System.out.println(welcomeMessage);
@@ -138,7 +141,7 @@ public class PlayGame {
         mainDeck.shuffle();
         System.out.println("Cards shuffled, now distributing the cards among players...");
 
-        // setting max cards to be distributed to playeers
+        // setting max cards to be distributed to players
         // switch case
         switch (PlayerList.getPlayerCount()) {
             case 3:
@@ -182,6 +185,11 @@ public class PlayGame {
 
     }
 
+    /**
+     * This sets max card values of the players according to the number
+     * of players that are playing the game. So that cards are divided properly.
+     * @param maxCardValues 
+     */
     private void setPlayerMaxCards(int[] maxCardValues) {
         for (int i = 0; i < PlayerList.getPlayerCount(); i++) {
             Player player = PlayerList.getPlayers().get(i); // get player object
