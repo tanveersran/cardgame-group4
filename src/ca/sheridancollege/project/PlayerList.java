@@ -8,7 +8,10 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Tanveer
+ * @author Tanveer Singh Sran
+ * @author Nimrat Kaur Virk
+ * @author Rajat Rajat
+ * @author Nancy Nancy
  */
 public class PlayerList {
     private static ArrayList<Player> players = new ArrayList<>(); // keep track of players playing

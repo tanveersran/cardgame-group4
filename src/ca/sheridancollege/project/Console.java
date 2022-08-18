@@ -17,7 +17,7 @@ public class Console {
      * @return String containing welcome message
      */
     public static String printWelcome() {
-        String message = ("////  Welcome to Takeaway ///// \n"
+        String message = ("////  Welcome to Getaway ///// \n"
                 + "//// Created by :         //// \n"
                 + "//// Tanveer Singh Sran  //// \n"
                 + "//// Rajat Rajat         //// \n"

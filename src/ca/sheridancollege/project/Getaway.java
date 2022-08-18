@@ -10,19 +10,26 @@ import java.util.Scanner;
 
 /**
  *
- * @author Tanveer
+ * @author Tanveer Singh Sran
+ * @author Nimrat Kaur Virk
+ * @author Rajat Rajat
+ * @author Nancy Nancy
  */
 public class Getaway extends Game {
 
     Scanner scn = new Scanner(System.in);
     Player currentPlayer; // keep track of current player.
-    ArrayList<Card> playedCards = new ArrayList<>(); // arraylist containing the current cards
+    
+    ArrayList<Card> discardPile = new ArrayList<>(); // arraylist containing the current cards
 
     private int playerCount;
     private int roundNo = 1;
-    private boolean allHasPlayed = false; // keep track if all player have played
-     boolean firstTurnPlayed = false;
+    boolean cardOfSuitExists; // keep track if players have cards of current suit being played
+    boolean firstTurnPlayed = false;
     private String currentSuit;
+
+    Card highestCard = new Card(); // this will keep track of highest card of the round.
+    Player highestCardPlayer; // this will keep track of player having highest card.
 
     public int getPlayerCount() {
         return playerCount;
@@ -43,11 +50,11 @@ public class Getaway extends Game {
 
     @Override
     public void play() {
-
+        highestCard.setCardRank(0);
         System.out.println("Round " + roundNo);
-       
+
         boolean gameFinished = false; // this will turn to true when game has finished
-        
+
         while (!gameFinished) {
             if (!firstTurnPlayed) {
                 firstPlayerTurn();
@@ -55,9 +62,8 @@ public class Getaway extends Game {
             } else {
                 nextPlayerTurn();
             }
-            if (playedCards.size() == PlayerList.getPlayers().size()) { // if all players have played their card, end round
-                endRound();   
-                
+            if (discardPile.size() == PlayerList.getPlayers().size()) { // if all players have played their card, end round
+                endRound();
                 System.out.println("Round has ended.");
                 nextRound();
             }
@@ -78,33 +84,45 @@ public class Getaway extends Game {
         if (roundNo == 1) { // if it is first round, this condition is met.
             for (Player player : PlayerList.getPlayers()) {
                 for (int i = 0; i < player.getPlayerHand().getSize(); i++) {
-                    if (player.getPlayerHand().getCards().get(i).getCardNumber() == 14) { // check if card is ace of spades (id 14)
+                    Card card = player.getPlayerHand().getCards().get(i);
+                    if (card.getCardNumber() == 14) { // check if card is ace of spades (id 14)
                         player.setCurrentPlayer(true); // set players turn
                         player.setHasPlayed(true);
+                        currentPlayer = player;
+
+                        System.out.println(currentPlayer.getName() + " has Ace of Spades , Its your turn!");
+
+                        // ask user to press enter to continue so they have time to look away from screen
+                        System.out.println("Press enter when you're ready");
+                        String input = scn.nextLine();
+                        while (!input.equals("")) {
+                            System.out.println("Press enter when you're ready");
+                            input = scn.nextLine();
+                        }
+
+                        System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
+                        currentSuit = card.getSuit(); // update current suit to match card suit
+                        discardPile.add(card); // add card to played card array
+                        currentPlayer.getPlayerHand().getCards().remove(i); // remove card from players cards                   
+                        currentPlayer.setCurrentPlayer(false);
+
+                        highestCard = card; // the played card will be highest card.
+                        highestCardPlayer = player;
+                        currentSuit = card.getSuit();
                         break;
                     }
                 }
             }
+        } else {
+            currentPlayer = highestCardPlayer; // set current player to player who had highest card in last round.
+            throwCard(); // throw cards.
         }
-        else {
-            
-        }
-
-        // finding the current player\
-        for (Player player : PlayerList.getPlayers()) {
-            if (player.isCurrentPlayer()) {
-                currentPlayer = player;
-            }
-        }
-        
-        throwCard(); // throw cards.
-
     }
 
     /**
-     * This method is run for the players that will be playing after the first player.
+     * This method is run for the players that will be playing after the first
+     * player.
      */
-    
     private void nextPlayerTurn() {
         scn = new Scanner(System.in); // flushing the scanner
 
@@ -122,14 +140,11 @@ public class Getaway extends Game {
                 currentPlayer = player;
             }
         }
-
         throwCard(); // throw cards
-        
+
     }
 
-
     private void throwCard() {
-        
         System.out.println(currentPlayer.getName() + " , Its your turn!");
 
         // ask user to press enter to continue so they have time to look away from screen
@@ -142,10 +157,7 @@ public class Getaway extends Game {
 
         System.out.println(Console.clear());
 
-        System.out.println("Your Cards: "); // printing player cards
-        for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
-            System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
-        }
+        showCards();
 
         boolean cardFound = false;
 
@@ -161,41 +173,112 @@ public class Getaway extends Game {
 
             for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
                 ArrayList<Card> cardList = currentPlayer.getPlayerHand().getCards();
-                Card card = cardList.get(i);
+                try {
+                    Card card = cardList.get(i);
 
-                if (card.getCardNumber() == cardNo) {
-                    System.out.println(Console.clear());
-                    System.out.println(currentPlayer.getName() +" played: " + card  + "\n\n\n");
-                    currentSuit = card.getSuit(); // update current suit to match card suit
-                    playedCards.add(card); // add card to played card array
-                    cardList.remove(i); // remove card from players cards
-                    cardFound = true;
-                    currentPlayer.setCurrentPlayer(false);
+                    if (card.getCardNumber() == cardNo) {
+                        System.out.println(Console.clear());
+                        System.out.println(currentPlayer.getName() + " played: " + card + "\n\n\n");
+                        
+                        if(cardOfSuitExists == false) { // this runs when player has to take all cards from discard pile
+                            giveDiscardPile();
+                            endRound(); // round will end
+                            nextRound();                        
+                            break;
+                        }
+                        if (card.getCardRank() > highestCard.getCardRank()) {
+                            highestCard = card; // if played card has higher rank, it will be set as highest card.
+                            highestCardPlayer = currentPlayer;
+                        }
 
-                    break;
+                        currentSuit = card.getSuit(); // update current suit to match card suit
+
+                        discardPile.add(card); // add card to played card array    
+
+                        cardList.remove(i); // remove card from players cards
+
+                        cardFound = true;
+                        currentPlayer.setCurrentPlayer(false);
+                        System.out.println(firstTurnPlayed);
+                        break;
+                    }
+                } catch (IndexOutOfBoundsException e) {
                 }
             }
         }
     }
-    /** 
-     * This method is run when the round is going to end, it resets the players has played values,
-     * and increments the round number.
+
+    /**
+     * This method is run when the round is going to end, it resets the players
+     * has played values, and increments the round number.
      */
     private void endRound() {
         for (Player player : PlayerList.getPlayers()) {
             player.setHasPlayed(false);
         }
-        
-        playedCards = new ArrayList(); // reset played card arraylist
+
+        discardPile.clear(); // reset played card arraylist
         roundNo++;
         firstTurnPlayed = false; // reset first turned played value
     }
-    
+
+    /**
+     * This method is run when the next round begins. This prints the round
+     * number and clears the console to prepare for the next round.
+     */
     private void nextRound() {
-        System.out.println("\n\n Press Enter to begin next Round");
+        System.out.println("\n\nPress Enter to begin next Round");
         System.out.println(Console.clear());
-        
+
         System.out.println("Round " + roundNo);
     }
 
+    private void showCards() {
+        System.out.println("Your Cards: "); // printing player cards
+
+        cardOfSuitExists = false;
+
+        for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
+            if (!firstTurnPlayed) {
+                try {
+                    System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                    cardOfSuitExists = true; // set to true if this condition is met
+                } catch (IndexOutOfBoundsException e) {
+                    //
+                }
+            } else {
+                try {
+                    if (currentPlayer.getPlayerHand().getCards().get(i).getSuit().equals(currentSuit)) {
+                        cardOfSuitExists = true;
+                        System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    // 
+                }
+            }
+
+        }
+
+        if (cardOfSuitExists == false) { // run this if no condition above is met
+            System.out.println("You do not have a card of that suit, Choose any card.");
+            for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
+                try {
+                System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+                } catch (IndexOutOfBoundsException e) {}
+            }        
+        }
+
+    }
+
+    /** This method will give all the cards that are in the discard pile back to the player 
+     * having the highest card.
+     */
+    private void giveDiscardPile() {
+        System.out.println(highestCardPlayer.getName() + " has taken all the cards from discard pile!\n");
+        
+        for (Card cards: discardPile) {
+            highestCardPlayer.getPlayerHand().getCards().add(cards);        
+        }
+        discardPile.clear();
+    }
 }

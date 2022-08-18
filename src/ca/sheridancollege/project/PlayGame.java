@@ -9,7 +9,10 @@ import java.util.Scanner;
 
 /**
  *
- * @author Tanveer
+ * @author Tanveer Singh Sran
+ * @author Nimrat Kaur Virk
+ * @author Rajat Rajat
+ * @author Nancy Nancy
  */
 public class PlayGame {
 

@@ -12,6 +12,9 @@ package ca.sheridancollege.project;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @modified Tanveer Singh Sran
+ * @modified Nimrat Kaur Virk
+ * @modified Rajat Rajat
+ * @modified Nancy Nancy
  *
  */
 public class Player {
