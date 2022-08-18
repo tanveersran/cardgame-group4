@@ -93,9 +93,10 @@ public class PlayGame {
                 }
 
                 nameMatchesCriteria = valName.validate(playerName); // check if name matches criteria
-
-                Player player = new Player(playerName, i);
-                PlayerList.addPlayer(player); // create player object and add it to player list
+                if (nameMatchesCriteria) {
+                    Player player = new Player(playerName, i);
+                    PlayerList.addPlayer(player); // create player object and add it to player list
+                }
             }
 
             nameMatchesCriteria = false; // set criteria to false again for next player
@@ -170,23 +171,19 @@ public class PlayGame {
                 mainDeck.cards.remove(0); // remove the card from main deck
             }
         }
-        
+
         System.out.println("Cards distributed....");
-        
+
         // STARTING THE GAME
-        
         game.play();
-        
+
     }
 
     private void setPlayerMaxCards(int[] maxCardValues) {
         for (int i = 0; i < PlayerList.getPlayerCount(); i++) {
             Player player = PlayerList.getPlayers().get(i); // get player object
             player.getPlayerHand().setSize(maxCardValues[i]); // set card size
-        }       
+        }
     }
-    
-    
-   
 
 }
