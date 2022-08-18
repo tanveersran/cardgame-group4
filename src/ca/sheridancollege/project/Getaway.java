@@ -21,6 +21,7 @@ public class Getaway extends Game {
     private int playerCount;
     private int roundNo = 1;
     private boolean allHasPlayed = false; // keep track if all player have played
+    private String currentSuit;
 
     public int getPlayerCount() {
         return playerCount;
@@ -45,60 +46,20 @@ public class Getaway extends Game {
         boolean roundHasEnded = false;
 
         System.out.println("Round " + roundNo);
-
+        boolean firstTurnPlayed = false;
         while (!roundHasEnded) {
-            if (roundNo != 1) {
+            if (!firstTurnPlayed) {
+                firstPlayerTurn();
+                firstTurnPlayed = true; // set to true after first turn
+
+            } else {
                 nextPlayerTurn();
             }
-            if (roundNo == 1) {
-                firstPlayerTurn();
-                roundNo++; // increment the round so this condition is not met every player turn
-            }
-            // finding the current player\
-            for (Player player : PlayerList.getPlayers()) {
-                if (player.isCurrentPlayer()) {
-                    currentPlayer = player;
-                }
-            }
-            System.out.println(currentPlayer.getName() + " , Its your turn!");
-            
-            System.out.println("Your Cards: "); // printing player cards
-            for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
-                System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
-            }
-
-            boolean cardFound = false;
-
-            while (!cardFound) {
-                System.out.println("Please type corresponding ID of the card to play");
-                int cardNo = 0;
-                try {
-                    cardNo = scn.nextInt();
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid Card ID.");
-                    scn = new Scanner(System.in); // flushing the scanner
-                }
-
-                for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
-                    ArrayList<Card> cardList = currentPlayer.getPlayerHand().getCards();
-                    Card card = cardList.get(i);
-
-                    if (card.getCardNumber() == cardNo) {
-                        System.out.println("You played: " + card);
-                        playedCards.add(card); // add card to played card array
-                        cardList.remove(i); // remove card from players cards
-                        cardFound = true;
-                        currentPlayer.setCurrentPlayer(false);
-                        break;
-                    }
-                }
-            }
-
             if (playedCards.size() == PlayerList.getPlayers().size()) { // if all players have played their card, end round
                 roundHasEnded = true;
+                endRound();
                 System.out.println("Round has ended.");
             }
-
         }
     }
 
@@ -110,23 +71,67 @@ public class Getaway extends Game {
     /**
      * This method decides the player who plays first during the first round.
      */
+    
     private void firstPlayerTurn() {
+        if (roundNo == 1) {
+            for (Player player : PlayerList.getPlayers()) {
+                for (int i = 0; i < player.getPlayerHand().getSize(); i++) {
+                    if (player.getPlayerHand().getCards().get(i).getCardNumber() == 14) { // check if card is ace of spades (id 14)
+                        player.setCurrentPlayer(true); // set players turn
+                        player.setHasPlayed(true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // finding the current player\
         for (Player player : PlayerList.getPlayers()) {
-            for (int i = 0; i < player.getPlayerHand().getSize(); i++) {
-                if (player.getPlayerHand().getCards().get(i).getCardNumber() == 14) { // check if card is ace of spades (id 14)
-                    player.setCurrentPlayer(true); // set players turn
-                    player.setHasPlayed(true);
+            if (player.isCurrentPlayer()) {
+                currentPlayer = player;
+            }
+        }
+
+        System.out.println(currentPlayer.getName() + " , Its your turn!");
+
+        System.out.println("Your Cards: "); // printing player cards
+        for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
+            System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+        }
+
+        boolean cardFound = false;
+
+        while (!cardFound) {
+            System.out.println("Please type corresponding ID of the card to play");
+            int cardNo = 0;
+            try {
+                cardNo = scn.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Card ID.");
+                scn = new Scanner(System.in); // flushing the scanner
+            }
+
+            for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
+                ArrayList<Card> cardList = currentPlayer.getPlayerHand().getCards();
+                Card card = cardList.get(i);
+
+                if (card.getCardNumber() == cardNo) {
+                    System.out.println("You played: " + card);
+                    currentSuit = card.getSuit(); // update current suit to match card suit
+                    playedCards.add(card); // add card to played card array
+                    cardList.remove(i); // remove card from players cards
+                    cardFound = true;
+                    currentPlayer.setCurrentPlayer(false);
                     break;
                 }
             }
-        }           
+        }
     }
 
     /**
      * This method
      */
     private void nextPlayerTurn() {
-
         for (Player player : PlayerList.getPlayers()) {
             if (!player.hasPlayed()) {
                 player.setCurrentPlayer(true);
@@ -135,6 +140,48 @@ public class Getaway extends Game {
             }
         }
 
+        // finding the current player\
+        for (Player player : PlayerList.getPlayers()) {
+            if (player.isCurrentPlayer()) {
+                currentPlayer = player;
+            }
+        }
+
+        System.out.println(currentPlayer.getName() + " , Its your turn!");
+
+        System.out.println("Your Cards: "); // printing player cards
+        for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
+            if (currentPlayer.getPlayerHand().getCards().get(i).getSuit().equals(currentSuit)) {
+                System.out.println(currentPlayer.getPlayerHand().getCards().get(i));
+            }
+        }
+
+        boolean cardFound = false;
+
+        while (!cardFound) {
+            System.out.println("Please type corresponding ID of the card to play");
+            int cardNo = 0;
+            try {
+                cardNo = scn.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Card ID.");
+                scn = new Scanner(System.in); // flushing the scanner
+            }
+
+            for (int i = 0; i < currentPlayer.getPlayerHand().getSize(); i++) {
+                ArrayList<Card> cardList = currentPlayer.getPlayerHand().getCards();
+                Card card = cardList.get(i);
+
+                if (card.getCardNumber() == cardNo) {
+                    System.out.println("You played: " + card);
+                    playedCards.add(card); // add card to played card array
+                    cardList.remove(i); // remove card from players cards
+                    cardFound = true;
+                    currentPlayer.setCurrentPlayer(false);
+                    break;
+                }
+            }
+        }
     }
 
     private void endRound() {
@@ -142,6 +189,7 @@ public class Getaway extends Game {
             player.setHasPlayed(false);
         }
         playedCards = new ArrayList(); // reset played card arraylist
+        roundNo++;
     }
 
 }

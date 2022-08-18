@@ -69,14 +69,14 @@ public class Console {
      */
     
     public static String printGameBegin() {
-        String message = "---------------------------------------------------"
+        String message = "-----------------------------------------------"
                 + "/                                                 / \n"
                 + "/               GAME IS STARTING                  / \n"
                 + "/                                                 / \n"
                 + "/  PRESS ENTER TO BEGIN OR TYPE 'rules' FOR RULES / \n"
                 + "/                                                 / \n"
-                + "                                                  / \n"
-                + "------------------------------------------------------";
+                + "/                                                  / \n"
+                + "-----------------------------------------------------";
         
         return message;
     } 
@@ -91,10 +91,10 @@ public class Console {
                 + "4. The cards that have been played in the rounds will be kept in "
                 + "a discard pile. \n"
                 + "5. The players who successfully use all their cards are counted"
-                + " as one of the winners. \n "
-                + "6. However, if the last card the player threw was the highest ranked card of that round,\n "
+                + " as one of the winners. \n"
+                + "6. However, if the last card the player threw was the highest ranked card of that round,\n"
                 + "the player will be given a random card from the discard pile "
-                + "and will have to stay in the game\n "
+                + "and will have to stay in the game\n"
                 + "7. The player left at the end is considered the loser, \n while "
                 + "all other players get score based on the position the got out of the game at.";
         return message;
