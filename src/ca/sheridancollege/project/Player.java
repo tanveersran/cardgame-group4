@@ -40,31 +40,52 @@ public class Player {
         this.name = name;
         this.playerNumber = playerNumber;
     }
-
+    /**
+     * 
+     * @return the player number
+     */
     public int getPlayerNumber() {
         return playerNumber;
     }
-
+    /**
+     * 
+     * @param playerNumber 
+     */
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
     }
-
+    /**
+     * 
+     * @return the current player playing the  game
+     */
     public boolean isCurrentPlayer() {
         return currentPlayer;
     }
-
+    /**
+     * 
+     * @param hasHighestCard 
+     */
     public void setCurrentPlayer(boolean hasHighestCard) {
         this.currentPlayer = hasHighestCard;
     }
-
+    /**
+     * 
+     * @return the player hand 
+     */
     public PlayerHand getPlayerHand() {
         return playerHand;
     }
-    
+    /**
+     * 
+     * @return the player scores
+     */
     public int getPlayerScores() {
         return playerScores;
     }
-
+    /**
+     * 
+     * @param playerScores 
+     */
     public void setPlayerScores(int playerScores) {
         this.playerScores = playerScores;
     }
@@ -84,15 +105,24 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
-
+    /**
+     * 
+     * @return a boolean whether the player has played or not
+     */
     public boolean hasPlayed() {
         return hasPlayed;
     }
-
+    /**
+     * 
+     * @param hasPlayed 
+     */
     public void setHasPlayed(boolean hasPlayed) {
         this.hasPlayed = hasPlayed;
     }
-    
+    /**
+     * the method to add card to the deck 
+     * @param card 
+     */
     public void addPlayerCard(Card card) {
         playerHand.cards.add(card);
     }
@@ -108,7 +138,10 @@ public class Player {
             }
         }
     }
-    
+    /**
+     * 
+     * @return the cards in the player hand
+     */
     public ArrayList<Card> getPlayerCard() {
         return playerHand.getCards();
     }
