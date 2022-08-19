@@ -8,9 +8,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * This class controls the starting of the game, it asks users for their usernames,
- * prompts to view rules and begins the game.
- * 
+ * This class controls the starting of the game, it asks users for their
+ * usernames, prompts to view rules and begins the game.
+ *
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat
@@ -33,7 +33,8 @@ public class PlayGame {
         game.run();
     }
 
-    /** This method asks users for their names and begins the game by calling the 
+    /**
+     * This method asks users for their names and begins the game by calling the
      * player method from Getaway at the end.
      */
     private void run() {
@@ -179,9 +180,10 @@ public class PlayGame {
     }
 
     /**
-     * This sets max card values of the players according to the number
-     * of players that are playing the game. So that cards are divided properly.
-     * @param maxCardValues 
+     * This sets max card values of the players according to the number of
+     * players that are playing the game. So that cards are divided properly.
+     *
+     * @param maxCardValues
      */
     private void setPlayerMaxCards(int[] maxCardValues) {
         for (int i = 0; i < PlayerList.getPlayerCount(); i++) {

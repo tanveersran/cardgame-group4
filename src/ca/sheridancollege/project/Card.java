@@ -6,8 +6,9 @@
 package ca.sheridancollege.project;
 
 /**
- * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
- * game. Students wishing to add to the code should remember to add themselves as a modifier.
+ * A class to be used as the base Card class for the project. Must be general
+ * enough to be instantiated for any Card game. Students wishing to add to the
+ * code should remember to add themselves as a modifier.
  *
  * @author dancye
  * @modified Tanveer Singh Sran
@@ -16,29 +17,32 @@ package ca.sheridancollege.project;
  * @modified Nancy Nancy
  */
 public class Card {
+
     //default modifier for child classes
     private String cardName;
     private int cardNumber; // unique number used to help in card selectiom   
     private int cardRank; // rank value of card
     private String suit;
-    
+
     /**
      * no-args Constructor
      */
-    public Card (){}
-    
+    public Card() {
+    }
+
     /**
      * constructor
+     *
      * @param cardName
-     * @param cardRank 
+     * @param cardRank
      * @param suit
      */
-    public Card (String suit,String cardName,int cardRank){
+    public Card(String suit, String cardName, int cardRank) {
         this.cardName = cardName;
         this.cardRank = cardRank;
         this.suit = suit;
     }
-    
+
     /**
      * @return the cardName
      */
@@ -66,6 +70,7 @@ public class Card {
     public void setCardRank(int cardRank) {
         this.cardRank = cardRank;
     }
+
     /**
      * @return the suit
      */
@@ -81,35 +86,36 @@ public class Card {
     }
 
     /**
-     * 
-     * @return card number 
+     *
+     * @return card number
      */
     public int getCardNumber() {
         return cardNumber;
     }
 
     /**
-     * 
-     * @param cardNumber  set card number
+     *
+     * @param cardNumber set card number
      */
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
     }
-    
+
     /**
      * Students should implement this method for their specific children classes
      *
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
+     * @return a String representation of a card. Could be an UNO card, a
+     * regular playing card etc.
      */
-    
     /**
-     * This method nicely returns a string value with card name, its suit and its number
+     * This method nicely returns a string value with card name, its suit and
+     * its number
+     *
      * @return String containing card details
      */
-    public String toString(){
+    public String toString() {
         String printCard = cardName + " of " + suit + "(ID: " + cardNumber + ")";
         return printCard;
     }
 
-    
 }

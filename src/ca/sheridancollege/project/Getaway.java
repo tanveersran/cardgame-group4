@@ -241,7 +241,7 @@ public class Getaway extends Game {
                             highestCard = card; // if played card has higher rank, it will be set as highest card.
                             highestCardPlayer = currentPlayer;
                         }
-                        
+
                         discardPile.add(card); // add card to discard pile
                         currentPlayer.getPlayerCard().remove(i); // remove card from players suit
 

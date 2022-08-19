@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * This class can be used to print basic messages for a console game
- * 
+ *
  * @author Tanveer Singh Sran
  * @author Nimrat Kaur Virk
  * @author Rajat Rajat
@@ -42,38 +42,39 @@ public class Console {
                 + Game.minPlayerCount + " - " + Game.maxPlayerCount);
         return message;
     }
-    
+
     /**
      * This method clears the screen by using system.out.println
+     *
      * @return String with 50 spaces
      */
     public static final String clear() {
         String message = "";
-        for(int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++) {
             message += "\n";
         }
         return message;
     }
-    
+
     /**
      * This method prints output to ask user to enter their name
-     * @param playerNumber 
-     * @return String 
+     *
+     * @param playerNumber
+     * @return String
      */
-    
     public static final String printPlayerNumber(int playerNumber) {
         String message = ("Player " + playerNumber + ", Please enter/choose a username "
                 + "having " + UsernameValidator.minUsernameLength + " - "
                 + UsernameValidator.maxUsernameLength + " characters");
         return message;
     }
-    
+
     /**
      * This method prints the game beggining message and prompts user to either
      * type rules or press enter to continue
-     * @return 
+     *
+     * @return
      */
-    
     public static final String printGameBegin() {
         String message = "-----------------------------------------------/\n"
                 + "/                                                /\n"
@@ -83,15 +84,15 @@ public class Console {
                 + "/                                                /\n"
                 + "/                                                /\n"
                 + "---------------------------------------------------";
-        
+
         return message;
-    } 
-    
+    }
+
     /**
      * This method prints the game rules
+     *
      * @return String value containg the game rules
      */
-    
     public static final String printRules() {
         String message = "Game Rules: \n"
                 + "1. Player having the ACE of SPADES begins the game \n"
@@ -110,13 +111,14 @@ public class Console {
                 + "all other players get score based on the position the got out of the game at.";
         return message;
     }
-    
-    /** 
+
+    /**
      * This method shows a message stating that the game has ended.
+     *
      * @return String
      */
     public static final String gameEnds() {
-       String message = "-----------------------------------------------"
+        String message = "-----------------------------------------------"
                 + "/                                                 / \n"
                 + "/               GAME HAS ENDED                    / \n"
                 + "/                                                 / \n"
@@ -124,12 +126,15 @@ public class Console {
                 + "/                                                 / \n"
                 + "/                                                  / \n"
                 + "-----------------------------------------------------";
-        
+
         return message;
     }
+
     /**
-     * This method asks user input if the presses enter then it moves to the next step
-     * @param message 
+     * This method asks user input if the presses enter then it moves to the
+     * next step
+     *
+     * @param message
      */
     public static final void enterToContinue(String message) {
         Scanner scn = new Scanner(System.in);
