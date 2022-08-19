@@ -25,7 +25,10 @@ public abstract class Game {
     public static final int minPlayerCount = 3; // minimum amount of players that can play
     public static final int maxPlayerCount = 8; // maximum amount of players that can play
 
-   
+   /**
+    * constructor with one argument as a string
+    * @param name 
+    */
     public Game(String name) {
         this.name = name;
         players = new ArrayList();

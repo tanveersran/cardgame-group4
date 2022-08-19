@@ -127,7 +127,10 @@ public class Console {
         
         return message;
     }
-    
+    /**
+     * This method asks user input if the presses enter then it moves to the next step
+     * @param message 
+     */
     public static final void enterToContinue(String message) {
         Scanner scn = new Scanner(System.in);
 

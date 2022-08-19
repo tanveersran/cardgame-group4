@@ -25,11 +25,17 @@ public class PlayerList {
     public static void addPlayer(Player player) {
         players.add(player);
     }
-
+    /**
+     * 
+     * @return the list of players
+     */
     public static ArrayList<Player> getPlayers() {
         return players;
     }
-
+    /**
+     * 
+     * @return the number of players in the player array
+     */
     public static int getPlayerCount() {
         return players.size();
     }
