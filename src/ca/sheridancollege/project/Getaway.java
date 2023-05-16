@@ -174,8 +174,7 @@ public class Getaway extends Game {
     private void nextPlayerTurn() {
         scn = new Scanner(System.in); // flushing the scanner
 
-        for (Player player : PlayerList.getPlayers()) {
-            System.out.println(player.getName() + "has " + player.hasPlayed());
+        for (Player player : PlayerList.getPlayers()) {      
             if (!player.hasPlayed()) {
                 player.setCurrentPlayer(true);
                 player.setHasPlayed(true);
