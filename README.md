@@ -10,6 +10,8 @@ Welcome to the Getaway Card Game repository! This project was created by Group 4
 
 - **Playable Rounds**: Engage in multiple rounds of the game, enjoying its immersive gameplay mechanics.
 
+- **Cards Display**: Only playable cards are displayed. If the turn has Spade cards, your deck will only display those! If you do not have any, you will see the entire deck.
+
 - **Player Elimination**: Players are eliminated based on their card ranks and receive cards from the discard pile.
 
 - **Game Rules**: The game starts by displaying the rules, and users must press enter after each turn to prevent cheating and allow enough time for players to avert their gaze.
